@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+<section>
+    <div class="container">
+        <div class="row co-12 d-flex mt-2 mb-2">
+            <h3>Your book Cart</h3>
+        </div>
+
+        {% for book in order.books %}
+        <div class="row shadow-md my-row mb-3">
+            <div class="col-sm-10 card">
+                <h5 class="card-header">{{book.ISBN}} : {{book.name}} , {{book.Genre.name}}</h5>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-2">
+                            <img class="img-thumbnail" src="{{url_for('static',filename=('img/'+ book.image))}}">
+
+                        </div>
+                        <div class="col-10">
+                            <p class="card-text">{{book.description}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+
+            <div class="col-sm-2">
+                <h5>{{"$%.2f"|format(book.price)}}</h5>
+                <form method="POST" action="{{url_for('main.deleteorderitem')}}">
+                    <input type="hidden" id="id" name="id" value="{{book.id}}">
+                    <input type="submit" value="Delete" class="btn btn-primary mb-3">
+                </form>
+            </div>
+
+        </div>
+        {% endfor %}
+
+        <section>
+            <div class="row co-12 d-flex">
+                <h5 class="mt-4">Total Cost = {{ "$%.2f"|format(totalprice) }}</h5>
+            </div>
+            <p> Gst prices are included**</p>
+
+            <div class="row co-12 d-flex mt-2 mb-4">
+                <a href="{{ url_for('main.index', _anchor='genre_anchor')}}" class="btn btn-primary mr-4">Add More
+                    books</a>
+                <a href="{{url_for('main.deleteorder')}}" class="btn btn-primary mr-4">Clear Basket</a>
+
+                <a href="{{url_for('main.checkout')}}" style="float: right" class="btn btn-primary mr-4">Continue Checkout</a>
+
+            </div>
+        </section>
+    </div>
+</section>
+{% endblock %}

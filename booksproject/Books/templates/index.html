@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block head %}
+<div class="jumbotron jumbotron-fluid card card-image" style="background-image: url({{url_for('static', filename= 'img/book_bg.jpg')}});">
+
+    <div class="text-white text-center py-5 px-4">
+        <div>
+            <h1 class="display-2">Welcome to BooksBerg</h1>
+            <p class="display-4 text-dark">Humans Best Friend</p>
+        </div>
+    </div>
+    {% endblock %}
+ 
+    {% block main %}
+    <section>
+        <div class="container">
+            <div class="text-dark text-center">
+                <div>
+                    <p class="h1 text-dark mb-4">What we Have?</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <article>
+                    <h2>What we Offer !</h2>
+                    <p>Beautiful stories</p>
+                    <ul>
+                        <li>Affordablle Prices</li>
+                        <li>Best Selling books </li>
+                        <li>Adventure and Fun</li>
+                    </ul>
+
+                </article>
+            </div>
+
+            <div class="col-md-4">
+                <article>
+                    <h2>Affordable selection</h2>
+                    <p>we have great prices and with Exclusive Offers!</p>
+                    <p>Click <a href="discount.html">here</a> for more information</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="text-dark text-center">
+            <div>
+                <p class="h3 text-dark mb-4" id="genres_anchor">Pick a genre you like </p>
+            </div>
+        </div>
+
+        <div class="card-columns">
+            {% for genre in genres %}
+            <div class="Card">
+                <img class="card-img-top" src="{{url_for('static', filename= 'img/'+genre.image)}}" alt="Card image">
+                <div class="card-body">
+                    <h4 class="card-title">{{genre.name}}</h4>
+                    <p class="card-text">{{genre.description}}</p>
+                </div>
+                <div class="card-footer"><a href="{{ url_for('main.genre_books',genreid=genre.id) }}"
+                        class="btn btn-primary">Books</a></div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% endblock %}

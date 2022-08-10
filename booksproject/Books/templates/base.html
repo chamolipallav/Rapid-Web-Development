@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--use this for leave comment-->
+
+<head>
+    <meta content ="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta name="description" content="Books Berg">
+    <!-- Boostrap required meta-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>BooksBerg</title>
+
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <!--jquery first, then popper.js and the boostrap.js-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <!-- for Css stylesheet-->
+    <!--link rel="stylesheet" href="css/style.css"-->
+    <style>
+        .my-row {
+            border: 1px solid grey;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!--contains the heading, navigation and banner image-->
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light bg-info">
+            <!--div class="container"-->
+            <!--travel app name or logo-->
+
+            <a class="navbar-brand" href="{{url_for('main.index', _anchor='index_anchor')}}">Books Berg</a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- navbar-->
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+
+                <a class="nav-item nav-link text-dark"
+                    href="{{url_for('main.index', _anchor='genre_anchor')}}">genres</a>
+
+                <a class="nav-item nav-link text-dark" href="{{url_for('main.order')}}">Basket</a>
+
+                <a class="nav-item nav-link text-dark" href="discount.html">discount Offers</a>
+
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <span class="navbar-text text-dark"> 1-800-80000 </span>
+                    </li>
+                    <li class="nav-item">
+                        <form class="form-inline my-2 my-lg-0 ml-5" action="{{url_for('main.search')}}">
+                            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="=search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        {% block head %}{% endblock %}
+    </header>
+    <!--- Content of main page -->
+    <div class="container-fluid">
+        <main>
+            {% block main %}{% endblock %}
+        </main>
+    </div>
+
+    <!--footer of the website-->
+    <footer class="footer">
+        <div class="container text-center ">
+            <p>Copyright &copy; Books Berg 2020</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
